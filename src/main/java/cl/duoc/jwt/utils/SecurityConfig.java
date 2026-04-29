@@ -18,12 +18,12 @@ public class SecurityConfig {
         // csrf -> es una medida de seguridad que se utiliza para proteger las aplicaciones web contra ataques de tipo CSRF (Cross-Site Request Forgery), que son ataques en los que un atacante engaña a un usuario autenticado para que realice una acción no deseada en una aplicación web en la que el usuario está autenticado.  
         //  Se desactiva el csrf para configurar nuestrar propias reglas con respecto a la seguridad 
         return http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/auth/login")
+            .authorizeHttpRequests(auth -> auth.requestMatchers("/auth/login")
                 .permitAll()
                 .anyRequest()
-                .authenticated()
-                .addFilterBefore(filtro, UsernamePasswordAuthenticationFilter.class))
-                .build();
+                .authenticated())
+            .addFilterBefore(filtro, UsernamePasswordAuthenticationFilter.class)
+            .build();
 
     }
 

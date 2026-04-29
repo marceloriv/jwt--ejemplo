@@ -25,7 +25,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        String header = request.getHeader("Autorizacion");
+        String header = request.getHeader("Authorization");
 
         if (header != null && header.startsWith("Bearer ")) {
             // startsWith: Hay que colocarle una frase para que no diga este no es el token respectivo al cual vamos a extraer
@@ -48,9 +48,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
               Luego, se coloca el objeto de autenticacion en el contexto de seguridad de Spring, para que pueda ser utilizado en toda la aplicacion. 
 
              */
-            filterChain.doFilter(request, response);
-
         }
+
+        filterChain.doFilter(request, response);
 
     }
 
